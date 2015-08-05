@@ -1,4 +1,4 @@
-# statistic-calculator-tabajara
+# desafio
 
 Usage: python desafio.py
 
