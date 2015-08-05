@@ -26,15 +26,7 @@ class DesafioTestCase(unittest.TestCase):
 
     def test_list(self):
         get = self.app.get('/person/?limit=1')
-        assert "HTTP 200"
-        "["
-        "  ["
-        "    1447151038885238,"
-        "    \"Renato\","
-        "    \"Pedigoni\","
-        "    \"Renato Pedigoni\""
-        "  ]"
-        "]" in get.data
+        assert "HTTP 200" in get.data
 
 if __name__ == '__main__':
     unittest.main()
