@@ -1,4 +1,4 @@
-import urllib2
+import urllib2, logging
 from flaskext.mysql import MySQL
 from flask import Flask, request, json, jsonify
 
@@ -9,6 +9,12 @@ app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_DB'] = 'Desafio'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
+logging.basicConfig(filename='desafio.log',
+                            filemode='a',
+                            format='%(asctime)s,%(levelname)s %(message)s',
+                            datefmt='%H:%M:%S',
+                            level=logging.DEBUG)
+logger = logging.getLogger('desafio')
 
 @app.route('/person/', methods=['GET', 'POST'])
 def index():
@@ -17,7 +23,7 @@ def index():
 
         if facebookId == '':
             facebookId = request.form['facebookId']
-        token = 'CAACEdEose0cBAEZAOMJk2TRrPiWhchBNxWVcbsBMzZAlpsMYj3Foeu8ULFyKOktdYLkfDYu6PJPmGcWg5OONVlL69bysSOyPZAH4iGbsJT23uavuHCUobesIAvwZA2AXK1Dnqo9f2ws4ApxCIH1tf50SdgJNbBGMQJClPicYRGuQew7lxVLQ7NaazEV7eEkQPceadxv6XPqeK7IjZCCamo9nSCzv4z1IZD'
+        token = 'CAACEdEose0cBAJu17BFyhc59Fi0hEpgerLe2FFKPRVW7ftsC7ec5Okmgw1IMIgYez6am9tw2VATEK2a0vDOU7MMq6gThSsobAJZAyNgZCYIrkoCb4C21QtaOR58sxDGgob5ePYUCcAHj8Fs32ZCFQ4nXQ9wWZAeZAUM7i627KbkCBo9JsmwBMZBZA1pOH1cYEqeMfzbZANtpxx3UCXBcSk5qtAWMsRRtsTgZD'
         try:
             content = urllib2.urlopen("https://graph.facebook.com/v2.0/%s?access_token=%s" % (facebookId, token))
         except urllib2.HTTPError, err:
