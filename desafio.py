@@ -13,8 +13,11 @@ mysql.init_app(app)
 @app.route('/person/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        facebookId = request.form['facebookId']
-        token = 'CAACEdEose0cBAKXM7fDsQZAoeZBTZBbRXaQPDNdyXllii6FSFkcj6fpEeMHAGKymyslGA9ZAaZAN3dK4Mz6UD8mdHNDNoQlaLBmYTXGZC7eZAKrNR98JkioLtN0mu9qwIpoSsG5jmESab5L0ZC2KdROZBcptJ7sSscAQfxPFJhRbmfaOrGYEYROL82kxuddqaFyyEOk0nwkAFVZA9rzyyyWGrIPfw8W9KsZCmgZD'
+        facebookId = request.data
+
+        if facebookId == '':
+            facebookId = request.form['facebookId']
+        token = 'CAACEdEose0cBAEZAOMJk2TRrPiWhchBNxWVcbsBMzZAlpsMYj3Foeu8ULFyKOktdYLkfDYu6PJPmGcWg5OONVlL69bysSOyPZAH4iGbsJT23uavuHCUobesIAvwZA2AXK1Dnqo9f2ws4ApxCIH1tf50SdgJNbBGMQJClPicYRGuQew7lxVLQ7NaazEV7eEkQPceadxv6XPqeK7IjZCCamo9nSCzv4z1IZD'
         try:
             content = urllib2.urlopen("https://graph.facebook.com/v2.0/%s?access_token=%s" % (facebookId, token))
         except urllib2.HTTPError, err:
