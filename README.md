@@ -1,6 +1,6 @@
 # desafio
 
-Requirements: In order to use that you must create 1st a MySQL database called Desafio for the main app and a database called testDB for the test coverage as well.
+Requirements: In order to use that you must create a MySQL database called Desafio for the main app and a database called testDB for the test coverage as well.
 
 Usage: python desafio.py
 
